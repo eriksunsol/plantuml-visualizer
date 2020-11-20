@@ -1,5 +1,5 @@
 export const Constants = {
-  imgSrcUrl: 'https://willbooster-plantuml.herokuapp.com',
+  imgSrcUrl: 'http://localhost:11111',
   checkExtensionEnabled: 'checkExtensionEnabled',
   urlRegexesToBeObserved: [/^https:\/\/github.com/],
 };
