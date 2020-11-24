@@ -9,20 +9,20 @@ export const DescriptionMutator = {
         const contents = await finder.find(webPageUrl, $root);
         for (const content of contents) {
           // Skip if no PlantUML descriptions exist
-          if (!content.text.length) continue;
+          if (!content.pumltext.length) continue;
 
-          const $text = content.$text;
+          const $node = content.$node;
 
           // To avoid embedding an image multiple times
           let $image: JQuery<Node>;
-          if (markAsAlreadyProcessed($text)) {
-            $image = await textToImage(content.text);
-            $image.insertAfter($text);
+          if (markAsAlreadyProcessed($node)) {
+            $image = await textToImage(content.pumltext);
+            $image.insertAfter($node);
           } else {
-            $image = $text.next();
+            $image = $node.next();
           }
 
-          setDblclickHandlers($text, $image);
+          setDblclickHandlers($node, $image);
         }
       })
     );

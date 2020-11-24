@@ -21,7 +21,7 @@ export class RawFileFinder implements Finder {
         const includedFileText = await this.getIncludedFileText(`${dirUrl}/${match[1]}`);
         content = content.replace(match[0], includedFileText || '');
       }
-      result.push({ $text, text: content });
+      result.push({ $node: $text, pumltext: content });
     }
     return result;
   }

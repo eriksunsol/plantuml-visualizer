@@ -1,6 +1,7 @@
 import $ from 'jquery';
 
 import { Constants } from './constants';
+import { ImgElementFinder } from './finder/imgElementFinder';
 import { DiffFinder, Finder } from './finder/finder';
 import { GitHubCodeBlockFinder, GitHubFileViewFinder, GitHubPullRequestDiffFinder } from './finder/gitHubFinder';
 import { RawFileFinder } from './finder/rawFileFinder';
@@ -9,8 +10,10 @@ import { DiffMutator } from './mutator/diffMutator';
 
 const sleep = (msec: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, msec));
 
-const allFinders = [new RawFileFinder(), new GitHubCodeBlockFinder(), new GitHubFileViewFinder()];
-const allDiffFinders = [new GitHubPullRequestDiffFinder()];
+const allFinders = [new ImgElementFinder()];
+const allDiffFinders: DiffFinder[] = [ ];
+//const allFinders = [new RawFileFinder(), new GitHubCodeBlockFinder(), new GitHubFileViewFinder()];
+//const allDiffFinders = [new GitHubPullRequestDiffFinder()];
 let enabledFinders: Finder[];
 let enabledDiffFinders: DiffFinder[];
 let lastUrl: string;

@@ -1,6 +1,6 @@
 export interface UmlContent {
-  $text: JQuery<Node>;
-  text: string;
+  $node: JQuery<Node>;
+  pumltext: string;
 }
 
 export interface Finder {
