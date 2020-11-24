@@ -31,7 +31,6 @@
   },
   "prettier": "@willbooster/prettier-config",
   "dependencies": {
-    "jquery": "3.5.1",
     "zlib.es": "0.6.0"
   },
   "devDependencies": {

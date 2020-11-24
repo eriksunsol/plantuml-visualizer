@@ -15,17 +15,6 @@ if (process.env.NODE_ENV === 'production') {
 
 export default [
   {
-    input: 'src/background.ts',
-    output: [
-      {
-        file: 'dist/background.js',
-        format: 'es',
-        sourcemap: true,
-      },
-    ],
-    plugins,
-  },
-  {
     input: 'src/content_scripts.ts',
     output: [
       {

@@ -1,9 +1,9 @@
 import { Finder } from '../finder/finder';
 
-import { markAsAlreadyProcessed, setDblclickHandlers, textToImage } from './mutatorUtil';
+import { markAsAlreadyProcessed, textToEncodedImage } from './mutatorUtil';
 
 export const DescriptionMutator = {
-  async embedPlantUmlImages(finders: Finder[], webPageUrl: string, $root: JQuery<Node>): Promise<void> {
+  async embedPlantUmlImages(finders: Finder[], webPageUrl: string, $root: HTMLElement): Promise<void> {
     await Promise.all(
       finders.map(async (finder) => {
         const contents = await finder.find(webPageUrl, $root);
@@ -14,15 +14,10 @@ export const DescriptionMutator = {
           const $node = content.$node;
 
           // To avoid embedding an image multiple times
-          let $image: JQuery<Node>;
           if (markAsAlreadyProcessed($node)) {
-            $image = await textToImage(content.pumltext);
-            $image.insertAfter($node);
-          } else {
-            $image = $node.next();
+            const encodedImage = await textToEncodedImage(content.pumltext);
+            $node.setAttribute('src', encodedImage);
           }
-
-          setDblclickHandlers($node, $image);
         }
       })
     );
